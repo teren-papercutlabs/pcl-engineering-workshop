@@ -1,0 +1,17 @@
+matches:
+  # Core workshop macros
+  - trigger: ":interview"
+    replace: "Invoke interview skill."
+
+  - trigger: ":skill"
+    replace: "Invoke skill-creator skill."
+
+  - trigger: ":hook"
+    replace: "Invoke hook-creator skill."
+
+  # Helpful shortcuts
+  - trigger: ":spcr"
+    replace: "Give me your suggestions, with pros, cons, and your recommendation."
+
+  - trigger: ":para"
+    replace: "Confirm your understanding by paraphrasing it back to me. Do not start any work until I confirm."
