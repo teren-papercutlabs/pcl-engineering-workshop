@@ -4,13 +4,22 @@
 </div>
 
 <% if @tasks.empty? %>
-  <p class="text-gray-500">No tasks yet. Create one to get started!</p>
+  <div class="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
+    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+    </svg>
+    <h3 class="mt-4 text-lg font-medium text-gray-900">No tasks yet</h3>
+    <p class="mt-1 text-sm text-gray-500">Get started by creating your first task.</p>
+    <div class="mt-6">
+      <%= link_to "Create Task", new_task_path, class: "bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded" %>
+    </div>
+  </div>
 <% else %>
   <div class="bg-white shadow overflow-hidden sm:rounded-md">
     <ul class="divide-y divide-gray-200">
       <% @tasks.each do |task| %>
         <li>
-          <div class="px-4 py-4 flex items-center justify-between">
+          <div class="px-4 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors duration-150">
             <div class="flex items-center space-x-4">
               <div class="flex-shrink-0">
                 <% if task.category %>
@@ -21,11 +30,14 @@
                 <p class="text-sm font-medium text-gray-900">
                   <%= link_to task.title, task, class: "hover:text-blue-600" %>
                 </p>
-                <p class="text-sm text-gray-500">
+                <p class="text-sm <%= task.due_date && task.due_date < Date.current && task.status != 'completed' ? 'text-red-600 font-medium' : 'text-gray-500' %>">
                   <% if task.category %>
                     <%= task.category.name %> |
                   <% end %>
                   Due: <%= task.due_date&.strftime("%b %d, %Y") || "No due date" %>
+                  <% if task.due_date && task.due_date < Date.current && task.status != 'completed' %>
+                    <span class="ml-1 text-red-600">(Overdue)</span>
+                  <% end %>
                 </p>
               </div>
             </div>

@@ -1,0 +1,27 @@
+# Rails credentials (never commit)
+config/master.key
+config/credentials/*.key
+
+# Environment
+.env*
+!.env.example
+
+# OS
+.DS_Store
+
+# Logs
+log/*
+!log/.keep
+
+# Temp files
+tmp/*
+!tmp/.keep
+!tmp/pids
+!tmp/pids/.keep
+
+# Storage
+storage/*
+!storage/.keep
+
+# Node
+node_modules/
