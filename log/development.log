@@ -1,0 +1,180 @@
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='RailsToyApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='RailsToyApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='RailsToyApp'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-01-14 02:44:58.641113', '2026-01-14 02:44:58.641115') RETURNING "key" /*application='RailsToyApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RailsToyApp'*/[0m
+Migrating to CreateCategories (20260114024206)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "categories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "color" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='RailsToyApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260114024206') RETURNING "version" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+Migrating to CreateTasks (20260114024212)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "status" integer, "due_date" date, "priority" integer, "category_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_acbc5a096e"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+) /*application='RailsToyApp'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_tasks_on_category_id" ON "tasks" ("category_id") /*application='RailsToyApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260114024212') RETURNING "version" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RailsToyApp'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RailsToyApp'*/[0m
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."name" = 'Work' LIMIT 1 /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "color", "created_at", "updated_at") VALUES ('Work', '#3B82F6', '2026-01-14 02:45:04.612091', '2026-01-14 02:45:04.612091') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."name" = 'Personal' LIMIT 1 /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Create (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "color", "created_at", "updated_at") VALUES ('Personal', '#10B981', '2026-01-14 02:45:04.615000', '2026-01-14 02:45:04.615000') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."name" = 'Shopping' LIMIT 1 /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Create (0.0ms)[0m  [1m[32mINSERT INTO "categories" ("name", "color", "created_at", "updated_at") VALUES ('Shopping', '#F59E0B', '2026-01-14 02:45:04.617138', '2026-01-14 02:45:04.617138') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" WHERE "categories"."name" = 'Health' LIMIT 1 /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Create (0.0ms)[0m  [1m[32mINSERT INTO "categories" ("name", "color", "created_at", "updated_at") VALUES ('Health', '#EF4444', '2026-01-14 02:45:04.618960', '2026-01-14 02:45:04.618960') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mCategory Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "categories" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Complete project proposal', 'Draft the Q1 project proposal including budget estimates and timeline', 1, '2026-01-17', 2, 1, '2026-01-14 02:45:04.627856', '2026-01-14 02:45:04.627856') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Review pull requests', 'Review and merge pending PRs from the team', 0, '2026-01-15', 1, 1, '2026-01-14 02:45:04.630066', '2026-01-14 02:45:04.630066') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Update documentation', 'Update the README and API docs for the new release', 0, '2026-01-21', 0, 1, '2026-01-14 02:45:04.631538', '2026-01-14 02:45:04.631538') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Call mom', 'Weekly catch-up call', 0, '2026-01-14', 1, 2, '2026-01-14 02:45:04.632938', '2026-01-14 02:45:04.632938') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Plan weekend trip', 'Research destinations and book accommodation', 2, '2026-01-12', 0, 2, '2026-01-14 02:45:04.634429', '2026-01-14 02:45:04.634429') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Buy groceries', 'Milk, eggs, bread, vegetables, and fruits', 0, '2026-01-14', 2, 3, '2026-01-14 02:45:04.646352', '2026-01-14 02:45:04.646352') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Order new headphones', 'The old ones are broken - check reviews first', 1, '2026-01-19', 1, 3, '2026-01-14 02:45:04.648240', '2026-01-14 02:45:04.648240') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Schedule dentist appointment', '6-month checkup is overdue', 0, '2026-01-16', 2, 4, '2026-01-14 02:45:04.649992', '2026-01-14 02:45:04.649992') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Go for a run', '30 minute jog in the park', 2, '2026-01-13', 1, 4, '2026-01-14 02:45:04.651170', '2026-01-14 02:45:04.651170') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "due_date", "priority", "category_id", "created_at", "updated_at") VALUES ('Refill prescription', 'Pick up from pharmacy before they close', 0, '2026-01-14', 2, 4, '2026-01-14 02:45:04.652291', '2026-01-14 02:45:04.652291') RETURNING "id" /*application='RailsToyApp'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='RailsToyApp'*/[0m
+  [1m[36mTask Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" /*application='RailsToyApp'*/[0m
+Started GET "/up" for ::1 at 2026-01-14 10:46:21 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='RailsToyApp'*/[0m
+Processing by Rails::HealthController#show as */*
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-14 10:46:25 +0800
+Processing by TasksController#index as */*
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:7
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."due_date" ASC /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" IN (2, 4, 3, 1) /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  Rendered tasks/index.html.erb within layouts/application (Duration: 14.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | GC: 0.0ms)
+Completed 200 OK in 53ms (Views: 21.6ms | ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-01-14 10:47:58 +0800
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:7
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."due_date" ASC /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" IN (2, 4, 3, 1) /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  Rendered tasks/index.html.erb within layouts/application (Duration: 12.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.5ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 13.5ms | ActiveRecord: 0.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/tasks/5" for ::1 at 2026-01-14 10:47:59 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id" => "5"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 5 LIMIT 1 /*action='show',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:44:in 'TasksController#set_task'
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 2 LIMIT 1 /*action='show',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/show.html.erb:6
+  Rendered tasks/show.html.erb within layouts/application (Duration: 3.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | GC: 11.0ms)
+Completed 200 OK in 27ms (Views: 21.2ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 11.0ms)
+
+
+Started GET "/tasks/5/edit" for ::1 at 2026-01-14 10:48:01 +0800
+Processing by TasksController#edit as HTML
+  Parameters: {"id" => "5"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = 5 LIMIT 1 /*action='edit',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/controllers/tasks_controller.rb:44:in 'TasksController#set_task'
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" /*action='edit',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/_form.html.erb:27
+  Rendered tasks/_form.html.erb (Duration: 9.3ms | GC: 0.4ms)
+  Rendered tasks/edit.html.erb within layouts/application (Duration: 10.0ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | GC: 0.4ms)
+Completed 200 OK in 13ms (Views: 10.6ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/" for ::1 at 2026-01-14 10:48:02 +0800
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:7
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."due_date" ASC /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  [1m[36mCategory Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" IN (2, 4, 3, 1) /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  Rendered tasks/index.html.erb within layouts/application (Duration: 2.5ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | GC: 0.3ms)
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/tasks/new" for ::1 at 2026-01-14 10:48:03 +0800
+Processing by TasksController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" /*action='new',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/_form.html.erb:27
+  Rendered tasks/_form.html.erb (Duration: 1.9ms | GC: 0.4ms)
+  Rendered tasks/new.html.erb within layouts/application (Duration: 6.8ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | GC: 0.4ms)
+Completed 200 OK in 9ms (Views: 7.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/tasks" for ::1 at 2026-01-14 10:48:04 +0800
+Processing by TasksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "tasks" LIMIT 1 /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:7
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" ORDER BY "tasks"."due_date" ASC /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" IN (2, 4, 3, 1) /*action='index',application='RailsToyApp',controller='tasks'*/[0m
+  ↳ app/views/tasks/index.html.erb:12
+  Rendered tasks/index.html.erb within layouts/application (Duration: 2.4ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.3ms)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
