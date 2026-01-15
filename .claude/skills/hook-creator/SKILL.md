@@ -5,11 +5,9 @@ description: Help me create a Claude Code hook. Interviews about what to catch, 
 
 # Hook Creator
 
-Interview the user to understand what guardrail they want, then create the hook.
+Use the **interview skill** protocol to understand what guardrail they want, then create the hook.
 
-## Interview Phase
-
-Ask these questions one at a time:
+## Questions to Ask
 
 1. **"What do you want to catch or check?"**
    - Get the core concern
@@ -44,9 +42,9 @@ Common patterns:
 - `Write` with `db/migrate/` - catches migration file creation
 - `Bash` with `rm` or `delete` - catches destructive commands
 
-## Implementation
+## After the Interview
 
-After interview, create:
+Create:
 
 ### 1. Hook Script
 
@@ -107,10 +105,10 @@ Add to `.claude/settings.json`:
 }
 ```
 
-**Post-migration lint:**
+**Post-model edit lint:**
 ```json
 {
-  "matcher": { "tool": "Write", "file_path": "db/migrate/**" },
-  "hooks": [{ "type": "command", "command": ".claude/hooks/check-migration.sh" }]
+  "matcher": { "tool": "Edit", "file_path": "app/models/**" },
+  "hooks": [{ "type": "command", "command": ".claude/hooks/check-model.sh" }]
 }
 ```

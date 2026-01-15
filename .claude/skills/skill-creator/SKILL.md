@@ -5,11 +5,9 @@ description: Help me create a Claude Code skill. Interviews about the workflow, 
 
 # Skill Creator
 
-Interview the user to understand what skill they want, then create it.
+Use the **interview skill** protocol to understand what skill they want, then create it.
 
-## Interview Phase
-
-Ask these questions one at a time:
+## Questions to Ask
 
 1. **"What task or workflow should this skill help with?"**
    - Get the core purpose
@@ -23,9 +21,13 @@ Ask these questions one at a time:
 4. **"Should this output a checklist, a plan, or take action?"**
    - Determines the skill's output mode
 
-## Skill Structure
+## After the Interview
 
-Skills live in `.claude/skills/<skill-name>/SKILL.md`:
+Write the SKILL.md file to `.claude/skills/<skill-name>/SKILL.md`.
+
+**No registration needed.** Just creating the file is enough - Claude auto-discovers skills in `.claude/skills/`.
+
+## Skill Structure
 
 ```markdown
 ---
@@ -37,17 +39,6 @@ description: Short description with trigger keywords.
 
 Instructions for Claude when invoked.
 ```
-
-## Create the Skill
-
-After the interview, write the SKILL.md file to `.claude/skills/<skill-name>/SKILL.md`.
-
-**No registration needed.** Just creating the file is enough - Claude auto-discovers skills in `.claude/skills/`.
-
-Include:
-- Name from the workflow topic
-- Description with trigger keywords
-- Instructions capturing their process/rules
 
 ## Description Best Practices
 
