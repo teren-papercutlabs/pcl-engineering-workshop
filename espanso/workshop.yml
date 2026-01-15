@@ -9,6 +9,9 @@ matches:
   - trigger: ":hook"
     replace: "Invoke hook-creator skill."
 
+  - trigger: ":retro"
+    replace: "Let's retro. Two lenses: (1) Friction - what went wrong or felt hard? (2) Patterns - what worked well? For each item, classify: context Claude should always know → CLAUDE.md, how to do something well → Skill, something I'd type again → Espanso macro. Help me identify and create any improvements."
+
   - trigger: ":feature"
     replace: "I want to plan a feature. First read the relevant views/models in the app to understand the current UI and data model. Then use the interview skill to interview me about what I want to build. When proposing implementation, check for any workflow skills I've created and honor their principles."
 
