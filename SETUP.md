@@ -1,30 +1,36 @@
-# Setup
+# Workshop Environment Setup
 
-## Prerequisites
+Set up the Rails workshop app for today's Claude Code session.
 
-- Ruby 4.0+ (Homebrew: `brew install ruby`)
-- Espanso (`brew install espanso`)
-- Claude Code
+**Important:** Check if each tool/step already exists before running. Skip steps that are already done.
 
-```bash
-# Use Homebrew Ruby
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-# Install deps
-bundle install
+## Tasks
 
-# Setup database
-bin/rails db:setup
+1. **Check Ruby version** — must be Ruby 4.0+. If using system Ruby (2.6), set PATH to use Homebrew Ruby:
+   ```
+   export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+   ```
+   Add this to shell config if not present.
 
-# Run server
-bin/rails server -p 3100
+2. **Install dependencies** — run `bundle install`
 
-# Espanso (copy macros)
-cat espanso/workshop.yml >> ~/Library/Application\ Support/espanso/match/base.yml
-espanso restart
-```
+3. **Set up database** — run `bin/rails db:setup` (creates SQLite database and seeds sample data)
 
-## Verify
+4. **Add yolo alias** to shell config (detect zsh or bash). Check if it already exists first.
+   ```
+   alias yolo='claude --dangerously-skip-permissions'
+   ```
 
-- App at http://localhost:3100
-- `:interview` expands in any text field
-- `/interview` invokes the skill in Claude
+5. **Install espanso macros** from `espanso/workshop.yml`:
+   - Copy/append to `~/Library/Application Support/espanso/match/base.yml`
+   - Restart espanso (`espanso restart`)
+
+6. **Start the Rails server** on port 3200:
+   ```
+   bin/rails server -p 3200
+   ```
+   Run this in background so we can continue working.
+
+7. **Verify setup** — confirm http://localhost:3200 returns 200 and shows the task list.
+
+After each step, confirm what you did before moving on.
