@@ -6,11 +6,10 @@ Set up the Rails workshop app for today's Claude Code session.
 
 ## Tasks
 
-1. **Check Ruby version** — must be Ruby 4.0+. If using system Ruby (2.6), set PATH to use Homebrew Ruby:
-   ```
-   export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-   ```
-   Add this to shell config if not present.
+1. **Check Ruby version** — run `ruby --version`. Need Ruby 3.0+ (4.0+ preferred).
+   - If already 3.0+: you're good, skip this step
+   - If using macOS system Ruby (2.6.x): need a newer Ruby via rbenv, asdf, or Homebrew
+   - Quick fix if no Ruby manager: `export PATH="/opt/homebrew/opt/ruby/bin:$PATH"` (requires `brew install ruby`)
 
 2. **Install dependencies** — run `bundle install`
 
