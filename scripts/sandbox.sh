@@ -1,6 +1,9 @@
 #!/bin/bash
 # Spawn isolated workshop test environment via git clone
 
+# Use Homebrew Ruby (not system Ruby 2.6)
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
 REPO="git@github.com:teren-papercutlabs/pcl-engineering-workshop.git"
 BASE="/tmp/workshop-test"
 

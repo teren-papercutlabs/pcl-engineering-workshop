@@ -1,6 +1,14 @@
 # Setup
 
+## Prerequisites
+
+- Ruby 4.0+ (Homebrew: `brew install ruby`)
+- Espanso (`brew install espanso`)
+- Claude Code
+
 ```bash
+# Use Homebrew Ruby
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 # Install deps
 bundle install
 
