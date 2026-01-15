@@ -25,3 +25,4 @@ storage/*
 
 # Node
 node_modules/
+*.sqlite3
