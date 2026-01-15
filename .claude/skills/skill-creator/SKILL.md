@@ -40,9 +40,13 @@ Instructions for Claude when invoked.
 
 ## Create the Skill
 
-After the interview, generate the SKILL.md file with:
+After the interview, write the SKILL.md file to `.claude/skills/<skill-name>/SKILL.md`.
+
+**No registration needed.** Just creating the file is enough - Claude auto-discovers skills in `.claude/skills/`.
+
+Include:
 - Name from the workflow topic
-- Description with trigger keywords from their answer
+- Description with trigger keywords
 - Instructions capturing their process/rules
 
 ## Description Best Practices
