@@ -14,8 +14,8 @@ Ask these questions one at a time:
 1. **"What task or workflow should this skill help with?"**
    - Get the core purpose
 
-2. **"When should Claude invoke this skill? What words would trigger it?"**
-   - These become the description keywords
+2. **Propose a trigger phrase** based on their workflow. Don't ask - suggest:
+   - "Based on what you described, I'd trigger this skill when you say 'implement feature', 'add capability to model', or 'build [feature name]'. Does that match when you'd want this guidance?"
 
 3. **"What should Claude DO when the skill is invoked?"**
    - Steps, rules, output format
